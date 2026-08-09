@@ -1,0 +1,17 @@
+# Ignore large / private artifacts
+*.mp4
+*.safetensors
+*.bin
+*.pt
+*.ckpt
+*.zip
+*.parquet
+*.arrow
+.cache/
+outputs/
+datasets/
+__pycache__/
+*.pyc
+.env
+*.json.bak
+calibration_backups/

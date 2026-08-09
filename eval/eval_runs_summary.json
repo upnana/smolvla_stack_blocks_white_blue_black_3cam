@@ -1,0 +1,290 @@
+[
+  {
+    "name": "20260809_124809",
+    "episodes": 1,
+    "frames": 2274,
+    "fps": 30,
+    "robot_type": "so101_follower",
+    "ep_info": {
+      "n_eps": 1,
+      "lengths": [
+        2274
+      ],
+      "cols": [
+        "episode_index",
+        "tasks",
+        "length",
+        "data/chunk_index",
+        "data/file_index",
+        "dataset_from_index",
+        "dataset_to_index",
+        "videos/observation.images.front/chunk_index",
+        "videos/observation.images.front/file_index",
+        "videos/observation.images.front/from_timestamp",
+        "videos/observation.images.front/to_timestamp",
+        "videos/observation.images.wrist/chunk_index",
+        "videos/observation.images.wrist/file_index",
+        "videos/observation.images.wrist/from_timestamp",
+        "videos/observation.images.wrist/to_timestamp",
+        "videos/observation.images.side/chunk_index",
+        "videos/observation.images.side/file_index",
+        "videos/observation.images.side/from_timestamp",
+        "videos/observation.images.side/to_timestamp",
+        "stats/action/min"
+      ]
+    },
+    "vid_dur": {
+      "front": 75.8,
+      "wrist": 75.8,
+      "side": 75.8
+    },
+    "action_shape": [
+      2274,
+      6
+    ],
+    "action_std": [
+      15.555999755859375,
+      49.2400016784668,
+      53.43600082397461,
+      12.531999588012695,
+      6.199999809265137,
+      17.525999069213867
+    ],
+    "action_mean": [
+      -2.4489998817443848,
+      -1.4220000505447388,
+      -10.72700023651123,
+      85.55899810791016,
+      -6.255000114440918,
+      14.722000122070312
+    ],
+    "action_delta_mean_abs": 0.9117712378501892,
+    "gripper_std": 17.525720596313477,
+    "gripper_range": [
+      0.3171424865722656,
+      61.51930236816406
+    ],
+    "state_delta_mean_abs": 0.5881073474884033,
+    "gripper_mid_crossings": 61
+  },
+  {
+    "name": "ckpt050000_20260809_125644_3310655",
+    "episodes": 1,
+    "frames": 2727,
+    "fps": 30,
+    "robot_type": "so101_follower",
+    "ep_info": {
+      "n_eps": 1,
+      "lengths": [
+        2727
+      ],
+      "cols": [
+        "episode_index",
+        "tasks",
+        "length",
+        "data/chunk_index",
+        "data/file_index",
+        "dataset_from_index",
+        "dataset_to_index",
+        "videos/observation.images.front/chunk_index",
+        "videos/observation.images.front/file_index",
+        "videos/observation.images.front/from_timestamp",
+        "videos/observation.images.front/to_timestamp",
+        "videos/observation.images.wrist/chunk_index",
+        "videos/observation.images.wrist/file_index",
+        "videos/observation.images.wrist/from_timestamp",
+        "videos/observation.images.wrist/to_timestamp",
+        "videos/observation.images.side/chunk_index",
+        "videos/observation.images.side/file_index",
+        "videos/observation.images.side/from_timestamp",
+        "videos/observation.images.side/to_timestamp",
+        "stats/action/min"
+      ]
+    },
+    "vid_dur": {
+      "front": 90.9,
+      "wrist": 90.9,
+      "side": 90.9
+    },
+    "action_shape": [
+      2727,
+      6
+    ],
+    "action_std": [
+      14.053000450134277,
+      49.8849983215332,
+      52.63800048828125,
+      12.619000434875488,
+      5.0269999504089355,
+      18.132999420166016
+    ],
+    "action_mean": [
+      -6.111000061035156,
+      -1.2979999780654907,
+      -12.281000137329102,
+      85.85800170898438,
+      -7.184999942779541,
+      14.355999946594238
+    ],
+    "action_delta_mean_abs": 0.8709123730659485,
+    "gripper_std": 18.13327980041504,
+    "gripper_range": [
+      0.3332252502441406,
+      58.94682312011719
+    ],
+    "state_delta_mean_abs": 0.5625500082969666,
+    "gripper_mid_crossings": 44
+  },
+  {
+    "name": "ckpt050000_20260809_130518_3336464",
+    "episodes": 1,
+    "frames": 9045,
+    "fps": 30,
+    "robot_type": "so101_follower",
+    "ep_info": {
+      "n_eps": 1,
+      "lengths": [
+        9045
+      ],
+      "cols": [
+        "episode_index",
+        "tasks",
+        "length",
+        "data/chunk_index",
+        "data/file_index",
+        "dataset_from_index",
+        "dataset_to_index",
+        "videos/observation.images.front/chunk_index",
+        "videos/observation.images.front/file_index",
+        "videos/observation.images.front/from_timestamp",
+        "videos/observation.images.front/to_timestamp",
+        "videos/observation.images.wrist/chunk_index",
+        "videos/observation.images.wrist/file_index",
+        "videos/observation.images.wrist/from_timestamp",
+        "videos/observation.images.wrist/to_timestamp",
+        "videos/observation.images.side/chunk_index",
+        "videos/observation.images.side/file_index",
+        "videos/observation.images.side/from_timestamp",
+        "videos/observation.images.side/to_timestamp",
+        "stats/action/min"
+      ]
+    },
+    "vid_dur": {
+      "front": 301.5,
+      "wrist": 301.5,
+      "side": 301.5
+    },
+    "action_shape": [
+      9045,
+      6
+    ],
+    "action_std": [
+      14.458000183105469,
+      48.81999969482422,
+      51.625999450683594,
+      12.473999977111816,
+      7.40500020980835,
+      17.145999908447266
+    ],
+    "action_mean": [
+      -8.380000114440918,
+      -2.3310000896453857,
+      -10.119000434875488,
+      86.06500244140625,
+      -6.307000160217285,
+      14.64799976348877
+    ],
+    "action_delta_mean_abs": 0.9149615168571472,
+    "gripper_std": 17.145946502685547,
+    "gripper_range": [
+      0.6551456451416016,
+      60.528648376464844
+    ],
+    "state_delta_mean_abs": 0.5910272598266602,
+    "gripper_mid_crossings": 210
+  },
+  {
+    "name": "ckpt060000_20260809_132147_3385771",
+    "episodes": 0,
+    "frames": 0,
+    "fps": 30,
+    "robot_type": "so101_follower",
+    "ep_info": {},
+    "vid_dur": {},
+    "action_shape": null,
+    "action_std": null,
+    "action_mean": null,
+    "action_delta_mean_abs": null,
+    "gripper_std": null,
+    "gripper_range": null,
+    "state_delta_mean_abs": null
+  },
+  {
+    "name": "ckpt080000_20260809_132457_3395144",
+    "episodes": 1,
+    "frames": 10650,
+    "fps": 30,
+    "robot_type": "so101_follower",
+    "ep_info": {
+      "n_eps": 1,
+      "lengths": [
+        10650
+      ],
+      "cols": [
+        "episode_index",
+        "tasks",
+        "length",
+        "data/chunk_index",
+        "data/file_index",
+        "dataset_from_index",
+        "dataset_to_index",
+        "videos/observation.images.front/chunk_index",
+        "videos/observation.images.front/file_index",
+        "videos/observation.images.front/from_timestamp",
+        "videos/observation.images.front/to_timestamp",
+        "videos/observation.images.wrist/chunk_index",
+        "videos/observation.images.wrist/file_index",
+        "videos/observation.images.wrist/from_timestamp",
+        "videos/observation.images.wrist/to_timestamp",
+        "videos/observation.images.side/chunk_index",
+        "videos/observation.images.side/file_index",
+        "videos/observation.images.side/from_timestamp",
+        "videos/observation.images.side/to_timestamp",
+        "stats/action/min"
+      ]
+    },
+    "vid_dur": {
+      "front": 355.0,
+      "wrist": 355.0,
+      "side": 355.0
+    },
+    "action_shape": [
+      10650,
+      6
+    ],
+    "action_std": [
+      15.467000007629395,
+      48.61199951171875,
+      50.422000885009766,
+      12.678999900817871,
+      6.736999988555908,
+      17.472999572753906
+    ],
+    "action_mean": [
+      -6.934000015258789,
+      -6.34499979019165,
+      -4.5289998054504395,
+      85.6510009765625,
+      -7.052000045776367,
+      14.10200023651123
+    ],
+    "action_delta_mean_abs": 0.9225143790245056,
+    "gripper_std": 17.47298240661621,
+    "gripper_range": [
+      0.45073699951171875,
+      59.76317596435547
+    ],
+    "state_delta_mean_abs": 0.6079341173171997,
+    "gripper_mid_crossings": 226
+  }
+]
