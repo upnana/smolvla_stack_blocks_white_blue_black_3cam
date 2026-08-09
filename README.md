@@ -223,42 +223,69 @@ clips/ckpt…_combo.mp4   # if ffmpeg available
 
 ## 4. Eval results (2026-08-09)
 
-Analyzed from eval videos + parquet actions. Detail: [`docs/EVAL_ANALYSIS.md`](docs/EVAL_ANALYSIS.md). Summary JSON: [`eval/eval_runs_summary.json`](eval/eval_runs_summary.json).
+> **Correction:** an earlier draft claimed **0/4** full success by scoring only end-of-file state on long recordings. That was wrong. Operator ground truth + mid-episode video review show the policy **does** complete white→blue→black towers.
 
-| Run | Ckpt | Duration | Best outcome | Full 3-stack | Notes |
-|-----|------|----------|--------------|--------------|-------|
-| `20260809_124809` | 100000 | 76 s | Stable **2-stack**, approach black | **No** | Short episode |
-| `…125644` | 050000 | 91 s | Stable **2-stack**, pre-grasp black | **No** | Cleanest short run |
-| `…130518` | 050000 | 302 s | **Near-miss** ~181 s (black held over W+B) | **No** | Then tip/reset; human later |
-| `…132147` | 060000 | — | incomplete | — | aborted early |
-| `…132457` | 080000 | 355 s | pick / approach | **No** | Heavy human-in-FOV |
+Detail write-up: [`docs/EVAL_ANALYSIS.md`](docs/EVAL_ANALYSIS.md) · numbers: [`eval/eval_runs_summary.json`](eval/eval_runs_summary.json)
 
-**Aggregate (complete autonomous-ish runs):** clean full success **0/4**.
+### Success rate (3cam, this experiment)
 
-### Capability
+| Source | SR |
+|--------|----|
+| Operator count (one session) | **4 / 5** episodes (~**80%**) full 3-stack |
+| Later informal tests | **>50%** |
+| Video re-score of saved long runs | Full towers visible mid-session (e.g. 50k @~85 s, 80k @~205 s) |
+
+Long `lerobot-record` folders often contain **multiple attempts** inside one file; ending unstacked ≠ never succeeded.
+
+### Demo videos
+
+| File | What |
+|------|------|
+| [`media/3_blocks_stack_2cam.mp4`](media/3_blocks_stack_2cam.mp4) | Older **2cam** stack eval clip (~62 s) |
+| [`media/3_blocks_stack_3cam.mp4`](media/3_blocks_stack_3cam.mp4) | **3cam** stack eval clip (~178 s) |
+
+### Inference latency (offline, ckpt 50k, 3 cams, CUDA)
+
+| Metric | Value |
+|--------|-------|
+| Action-chunk forward / first `select_action` | **~143 ms** |
+| Queued `select_action` | **~1.2 ms** |
+| `n_action_steps` | 50 → refill ~every **1.67 s** at 30 Hz control |
+
+Realtime loop stays **30 Hz**; heavy compute is chunked.
+
+### Capability (revised)
 
 **Works**
-- Reach / center on blocks  
-- Reliable grasps (esp. blue / white)  
-- Place blue on white → stable 2-stack  
-- After 2-stack, often re-targets black  
+- Reach / center / grasp under **randomized** white–blue–black layout (incl. white/blue swap)
+- Stable **2-stack** (white←blue) and **full 3-stack** (white←blue←black)
+- Retries after tip inside a session
 
-**Fails**
-- Precise **black-on-2stack** place / release  
-- Early order sometimes wrong (blue first)  
-- Gripper chatter (≈24–98 open/close cycles per long ep)  
-- Recovery after tip; long runs contaminated by hands  
+**Still noisy**
+- Gripper chatter on long recordings
+- Occasional place miss on black → needs retry
+- Hands-in-FOV make some saved folders unfair for autonomy scoring
 
-**Checkpoint takeaway:** do not assume `last` (100k) is best — **50k** looked strongest in this sweep.
+**Checkpoint note:** mid ckpts (e.g. **50k**) and **80k** both show completed towers in video; do not assume only `last` works.
+
+### Saved run index (local machine folders)
+
+| Run | Ckpt | Duration | Notes |
+|-----|------|----------|-------|
+| `20260809_124809` | 100000 | 76 s | Short; 2-stack + approach black |
+| `…125644` | 050000 | 91 s | Short; strong 2-stack |
+| `…130518` | 050000 | 302 s | Mid-episode **full tower** (~85 s); later retries |
+| `…132147` | 060000 | — | Incomplete / aborted |
+| `…132457` | 080000 | 355 s | Mid-episode **full tower** (~205 s); multi-attempt session |
 
 ---
 
 ## 5. Next steps (recommended)
 
-1. **Clean A/B** (no hands): `STEP=50000` and `100000`, `EPISODE_TIME_S≥180`, 3–5 trials each.  
-2. Collect **40–60** demos of black-on-stable-2stack only.  
-3. Optionally resume train from 50–70k after new data (or fresh fine-tune).  
-4. Keep clip export on; score only untouched autonomous episodes.
+1. Score SR per **attempt** (end episode on success) so folders match operator counts.  
+2. Keep collecting finish demos (black-on-stable-2stack) to raise stability above 50–80%.  
+3. Optional ckpt sweep with fixed protocol: 50k / 80k / 100k × N clean trials.  
+4. Keep clip export (`clips/`) on for every robot run.
 
 ---
 

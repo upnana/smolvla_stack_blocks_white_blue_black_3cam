@@ -1,5 +1,4 @@
 # Ignore large / private artifacts
-*.mp4
 *.safetensors
 *.bin
 *.pt
@@ -15,3 +14,7 @@ __pycache__/
 .env
 *.json.bak
 calibration_backups/
+
+# Keep curated demo clips under media/ (tracked via Git LFS)
+*.mp4
+!media/*.mp4
