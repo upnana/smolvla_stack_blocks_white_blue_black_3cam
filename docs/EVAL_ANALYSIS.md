@@ -15,13 +15,26 @@
 | `ckpt060000_20260809_132147_3385771` | 60000 | 0 | — | — | — | incomplete | — |
 | `ckpt080000_20260809_132457_3395144` | 80000 | 10650 | 355.0 | 98 | heavy | pick/approach | No |
 
-**Clean full 3-stack success: 0 / 4** (excluding incomplete 60k).
+## Correction (2026-08-09 evening)
 
-## Near-miss detail (50k long, ~181s)
+Previous “0/4 full success” was **incorrect**. Causes:
+1. Scored mostly **end-of-recording** state; long runs keep going after a success → end looks unstacked.
+2. Sparse frame sampling missed mid-episode towers.
+3. Operator ground truth: **5 episodes, 4 successes (~80%)** that day; later informal tests **>50%** SR.
+4. Model still picks the right color when white/blue layout is randomized.
 
-Front frame ~180.9s: gripper holds **black** centered over a stable **white + blue** stack (correct order).  
-By ~185s: all three blocks flat again (failed place / tip / or immediate reset).  
-Later: human hand in FOV; episode ends again near a 2-stack while approaching black.
+### Video-confirmed full towers (side cam)
+
+| Run | ~time | Stack |
+|-----|-------|-------|
+| `ckpt050000_…130518` | ~85 s | white ← blue ← black |
+| `ckpt080000_…132457` | ~205 s | white ← blue ← black |
+
+Treat saved folders as **long sessions with multiple attempts**, not one binary trial each.
+
+## Near-miss / retry detail (50k long, ~181s)
+
+Also saw black held over W+B then tip/retry — consistent with multi-attempt sessions, not “never succeeds”.
 
 ## Action health
 
@@ -30,21 +43,30 @@ Across runs:
 - `|Δstate| > 8` rare → `max_relative_target=10` not the main bottleneck in these logs.
 - Gripper chatter high on long episodes (enter_closed ≈ 24–98) vs ~3 needed for a clean 3-stack.
 
-## Capability summary
+## Capability summary (revised)
 
 | Skill | Status |
 |-------|--------|
-| Reach / align | OK |
-| Grasp white/blue | OK |
-| Place blue on white | OK (common) |
-| Grasp black after 2-stack | Often attempted |
-| Place black on 2-stack | **Fail / unstable** |
-| Order discipline early | Mixed (sometimes blue first) |
-| Autonomy w/o human | OK on short; poor on long |
+| Reach / align | Strong |
+| Grasp under position shuffle | Strong (incl. white/blue swap) |
+| Place blue on white | Strong |
+| Full 3-stack (W←B←K) | **Achievable**; operator SR ~4/5 one session, later >50% |
+| Recovery after tip | Partial (retries inside long sessions) |
+| Gripper chatter | Still high on long recordings |
+
+## Latency (offline bench, ckpt 50k, CUDA, 3 cams)
+
+| Metric | Value |
+|--------|-------|
+| `predict_action_chunk` / first `select_action` | **~143 ms** mean (≈140–147) |
+| Subsequent queued `select_action` | **~1.2 ms** |
+| `n_action_steps` | 50 |
+| Control target | 30 Hz (33 ms budget); chunk refill every ~50 steps ≈ every **1.67 s** |
+
+So wall-clock policy compute is chunky (~7 chunk-forwards/s max if saturated), but realtime loop stays at 30 Hz via action queue.
 
 ## Recommendations
 
-1. Clean re-eval: `STEP=50000` and `STEP=100000`, no intervention, ≥180s, ≥3 trials.  
-2. Targeted demos: black-on-stable-2stack (40–60).  
-3. Prefer mid ckpt until clean sweep says otherwise.  
-4. Keep unique clip export (`clips/`) for every robot run.
+1. Log SR per **attempt** (stop episode on success) so folders match operator counts.  
+2. Keep clip export; optionally stamp success timestamps.  
+3. More black-finish demos still help stability, but model is already past “never finishes”.

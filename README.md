@@ -16,8 +16,10 @@ Experiment log for SO101 teleop data collection → SmolVLA training → real-ro
 |-------|--------|
 | Data | **120** episodes / **79 251** frames / 3 cams / new gripper |
 | Train | Dual-GPU SmolVLA, **100 000** steps (~**40** epochs), finished 2026-08-09 06:36 |
-| Eval | **0/4** clean full 3-stack success; strong **2-stack** (white←blue); fails on **black on top** |
-| Best ckpt (this sweep) | **50 000** (~10 epoch) looked better than 80k / 100k on video |
+| Eval (operator count) | **~4/5** full 3-stack success on one session; later tests **>50%** SR |
+| Eval (video re-score) | Mid-episode full towers confirmed (e.g. 50k@~85s, 80k@~205s); earlier “0/4” was **wrong** (end-of-file scoring) |
+| Latency | Action-chunk forward ≈ **143 ms**; queue pop ≈ **1.2 ms**; control @30 Hz with `n_action_steps=50` |
+| Robustness | Grasps OK when white/blue positions are swapped / randomized |
 
 Dataset (HF mirror): [upna/stack_3blocks_white_blue_black_3cam](https://hf-mirror.com/datasets/upna/stack_3blocks_white_blue_black_3cam)  
 Local zip ≈ 693 MB: `stack_3blocks_white_blue_black_3cam.zip`
