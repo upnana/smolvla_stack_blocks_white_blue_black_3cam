@@ -18,3 +18,7 @@ calibration_backups/
 # Keep curated demo clips under media/ (tracked via Git LFS)
 *.mp4
 !media/*.mp4
+
+!media/*.gif
+!media/*.jpg
+!media/*.html

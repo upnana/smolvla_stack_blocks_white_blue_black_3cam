@@ -22,7 +22,8 @@ Experiment log for SO101 teleop data collection → SmolVLA training → real-ro
 | Robustness | Grasps OK when white/blue positions are swapped / randomized |
 
 Dataset (HF mirror): [upna/stack_3blocks_white_blue_black_3cam](https://hf-mirror.com/datasets/upna/stack_3blocks_white_blue_black_3cam)  
-Local zip ≈ 693 MB: `stack_3blocks_white_blue_black_3cam.zip`
+Local zip ≈ 693 MB: `stack_3blocks_white_blue_black_3cam.zip`  
+**Eval videos (open in browser):** [`docs/eval_player.html`](docs/eval_player.html) · [`media/index.html`](media/index.html)
 
 ---
 
@@ -239,10 +240,36 @@ Long `lerobot-record` folders often contain **multiple attempts** inside one fil
 
 ### Demo videos
 
+**HTML player (open in browser):** [`docs/eval_player.html`](docs/eval_player.html)
+
 | File | What |
 |------|------|
-| [`media/3_blocks_stack_2cam.mp4`](media/3_blocks_stack_2cam.mp4) | Older **2cam** stack eval clip (~62 s) |
-| [`media/3_blocks_stack_3cam.mp4`](media/3_blocks_stack_3cam.mp4) | **3cam** stack eval clip (~178 s) |
+| [`media/3_blocks_stack_3cam.mp4`](media/3_blocks_stack_3cam.mp4) | **3cam** stack eval clip (~178 s, H.264) |
+| [`media/3_blocks_stack_2cam.mp4`](media/3_blocks_stack_2cam.mp4) | Older **2cam** stack eval clip (~62 s, H.264) |
+
+#### 3cam · main eval
+
+<p align="center">
+  <video src="https://github.com/upnana/smolvla_stack_blocks_white_blue_black_3cam/releases/download/eval-demo/3_blocks_stack_3cam.mp4" poster="media/3_blocks_stack_3cam_poster.jpg" controls width="720" playsinline></video>
+</p>
+
+https://github.com/upnana/smolvla_stack_blocks_white_blue_black_3cam/releases/download/eval-demo/3_blocks_stack_3cam.mp4
+
+<p align="center">
+  <img src="media/3_blocks_stack_3cam_preview.gif" width="640" alt="3cam stack eval preview" />
+</p>
+
+#### 2cam · older
+
+<p align="center">
+  <video src="https://github.com/upnana/smolvla_stack_blocks_white_blue_black_3cam/releases/download/eval-demo/3_blocks_stack_2cam.mp4" poster="media/3_blocks_stack_2cam_poster.jpg" controls width="720" playsinline></video>
+</p>
+
+https://github.com/upnana/smolvla_stack_blocks_white_blue_black_3cam/releases/download/eval-demo/3_blocks_stack_2cam.mp4
+
+<p align="center">
+  <img src="media/3_blocks_stack_2cam_preview.gif" width="640" alt="2cam stack eval preview" />
+</p>
 
 ### Inference latency (offline, ckpt 50k, 3 cams, CUDA)
 
